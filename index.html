@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library</title>
+    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+    <header class="header">
+        <p>Library</p>
+        <!-- Open the Modal -->
+        <button class="btn-new-book" id="myBtn">New Book</button>
+    </header>
+    <main class="main">
+        <!-- all books go here -->
+        <section class="books"></section>
+
+
+
+        <!-- The Modal -->
+        <div id="myModal" class="modal">
+            <!-- Modal content -->
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <form action="" onsubmit="return false">
+                    <div class="input-box">
+                        <label for="book-name">Name</label>
+                        <input id="book-name" type="text" required>
+                    </div>
+
+                    <div class="input-box">
+                        <label for="book-author">Author</label>
+                        <input id="author" type="text" required>
+                    </div class="input">
+
+                    <div class="input-box">
+                        <label for="book-pages">Pages</label>
+                        <input id="pages" type="number" required>
+                    </div>
+
+                    <div class="checkbox">
+                        <label for="has-read"><input id="has-read" type="checkbox"><span>I have read this</span></label>
+                    </div>
+
+                    <button type="button" id="add-btn">Add Book</button>
+                </form>
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <footer></footer>
+
+</body>
+
+</html>
