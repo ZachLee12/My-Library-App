@@ -3,9 +3,58 @@
     --form-font-size: 1.8em;
 }
 
+body {
+    background-color: #ededed;
+}
+
 .header {
     height: 100px;
-    background-color: #d6cccc;
+    background-color: #ffffff;
+    box-shadow: 0px 0px 10px 5px #d6d6d6;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.header div {
+    display: flex;
+    gap: 10px;
+}
+
+.header div img {
+    width: 40px;
+}
+
+.main {
+    display: flex;
+    flex-direction: column;
+}
+
+button.btn-new-book {
+    margin: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    height: 50px;
+    width: 160px;
+    font-size: 1.3em;
+    border-radius: 25px;
+    background-color: #32b732;
+    font-weight: 600;
+    transition: all 400ms;
+}
+
+button.btn-new-book:hover {
+    background-color: #429149;
+}
+
+button.btn-new-book:active {
+    background-color: #387c3e;
+}
+
+button.btn-new-book img {
+    height: 40%;
 }
 
 .header p {
@@ -14,21 +63,21 @@
 
 .books {
     display: grid;
-    margin-top: 50px;
-    border: 2px solid red;
     grid-template-rows: 1fr;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(250px, 300px));
     height: 100%;
-    padding-left: 10px;
-    padding-right: 10px;
-    gap: 10px;
+    padding-left: 150px;
+    padding-right: 150px;
+    column-gap: 50px;
+    row-gap: 30px;
+    justify-content: center;
 }
 
 .books .book {
     border: 2px solid green;
     position: relative;
-    height: 200px;
-    background-image: linear-gradient(-45deg, rgb(94, 192, 70), rgb(246, 249, 255));
+    height: 240px;
+    background-image: linear-gradient(-45deg, #5ec046, #f6f9ff);
     border-radius: 25px;
     display: grid;
     justify-content: center;
@@ -43,25 +92,34 @@
 
 .book .toggle-btn-container {
     display: flex;
+    flex-direction: column-reverse;
     justify-content: center;
     font-size: 1.5em;
     gap: 5px;
 }
 
-.toggle-btn-container input[type="checkbox"]{
-    accent-color: rgb(35, 139, 35);
+.toggle-btn-container input[type="checkbox"] {
+    accent-color: #238b23;
     width: 20px;
     height: 20px;
 }
 
-.book>* {
-    border: 2px solid red;
-}
-
 .book .remove-btn {
     position: absolute;
-    top: 0px;
-    right: 0px;
+    top: 6px;
+    right: 10px;
+    border-radius: 100%;
+    border: none;
+    height: 25px;
+    width: 25px;
+    font-size: large;
+    background-image: url("./images/cross.svg");
+    background-size: cover;
+}
+
+.book .remove-btn:hover {
+    background-image: url("./images/cross-hover.svg");
+    background-size: cover;
 }
 
 

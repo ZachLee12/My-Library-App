@@ -60,22 +60,27 @@ function displayBook(book) {
     let bookPages = document.createElement("p");
     bookPages.innerText = book.pages + ' pages';
     let removeBtn = document.createElement("button")
-    removeBtn.innerText = "x"
     removeBtn.classList.add("remove-btn");
     addRemoveFunction(removeBtn)
 
+    //toggle container
     let toggleBtnContainer = document.createElement("div")
     toggleBtnContainer.classList.add("toggle-btn-container")
+    //checkbox
     let toggleReadBtn = document.createElement("input")
     toggleReadBtn.type = "checkbox"
     toggleReadBtn.id = `toggle-read-${book.id}`
-    let toggleReadLabel = document.createElement("label")
-    toggleReadLabel.innerText = "I have read this"
-    toggleReadLabel.htmlFor = `toggle-read-${book.id}`
-    toggleReadLabel.innerHTML = "I have read this"
     book.readFinished ? toggleReadBtn.checked = true : toggleReadBtn.checked = false;
-    toggleBtnContainer.append(toggleReadBtn,toggleReadLabel)
-    
+    //label
+    let toggleReadLabel = document.createElement("label")
+    let labelSpan = document.createElement('span')
+    labelSpan.innerText = 'I have read this'
+    toggleReadLabel.append(toggleReadBtn)
+    toggleReadLabel.append(labelSpan)
+    toggleReadLabel.htmlFor = `toggle-read-${book.id}`
+    toggleBtnContainer.append(toggleReadLabel)
+    // toggleBtnContainer.append(toggleReadBtn,toggleReadLabel)
+
     let bookDiv = document.createElement("div");
     bookDiv.classList.add("book")
     bookDiv.id = book.id; //add bookId to element
