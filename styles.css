@@ -29,7 +29,7 @@
 
 }
 
-.book #remove-btn {
+.book .remove-btn {
     position: absolute;
     top: 0px;
     right: 0px;

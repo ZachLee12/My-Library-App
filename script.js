@@ -22,6 +22,7 @@ function Book(name, author, pages, readFinished, id) {
     this.readFinished = readFinished;
     this.id = id;
 }
+
 let bookId = 0;
 function addBookToLibrary(name, author, pages, readFinished) {
     const newBook = new Book(name, author, pages, readFinished, bookId);
@@ -36,6 +37,20 @@ addBookToLibrary('AI is cool', 'Lea', 400, true);
 addBookToLibrary('Luzern is good', 'Greta', 664, false);
 addBookToLibrary('Dreams', 'Daylan', 245, true);
 
+function addRemoveFunction(btn) {
+    btn.addEventListener("click", (e) => {
+        e.target.parentElement.remove(); //remove from HTML
+        myLibrary = deleteBookFromLibrary(myLibrary, e.target.parentElement.id) //delete from myLibrary
+        console.table(myLibrary)
+    })
+}
+
+
+function deleteBookFromLibrary(library, id) {
+    return library.filter(book => book.id !== parseInt(id));
+}
+
+
 let bookDisplay = document.querySelector(".books")
 function displayBook(book) {
     let bookName = document.createElement("p");
@@ -48,10 +63,11 @@ function displayBook(book) {
     bookRead = book.readFinished;
     let removeBtn = document.createElement("button")
     removeBtn.innerText = "x"
-    removeBtn.id = "remove-btn"
-
+    removeBtn.classList.add("remove-btn");
+    addRemoveFunction(removeBtn)
     let bookDiv = document.createElement("div");
     bookDiv.classList.add("book")
+    bookDiv.id = book.id; //add bookId to element
     bookDiv.append(bookName, bookAuthor, bookPages, bookRead, removeBtn)
     bookDisplay.append(bookDiv)
 }
@@ -79,8 +95,8 @@ addBookBtn.addEventListener("click", () => {
     }
 })
 
-// remove button
-let removeBookBtn = document.querySelector("#remove-btn")
+
+
 
 
 
