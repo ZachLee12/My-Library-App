@@ -54,21 +54,32 @@ function deleteBookFromLibrary(library, id) {
 let bookDisplay = document.querySelector(".books")
 function displayBook(book) {
     let bookName = document.createElement("p");
-    bookName.innerText = book.name;
+    bookName.innerText = `"${book.name}"`;
     let bookAuthor = document.createElement("p");
     bookAuthor.innerText = book.author;
     let bookPages = document.createElement("p");
-    bookPages.innerText = book.pages;
-    let bookRead = document.createElement("p");
-    bookRead = book.readFinished;
+    bookPages.innerText = book.pages + ' pages';
     let removeBtn = document.createElement("button")
     removeBtn.innerText = "x"
     removeBtn.classList.add("remove-btn");
     addRemoveFunction(removeBtn)
+
+    let toggleBtnContainer = document.createElement("div")
+    toggleBtnContainer.classList.add("toggle-btn-container")
+    let toggleReadBtn = document.createElement("input")
+    toggleReadBtn.type = "checkbox"
+    toggleReadBtn.id = `toggle-read-${book.id}`
+    let toggleReadLabel = document.createElement("label")
+    toggleReadLabel.innerText = "I have read this"
+    toggleReadLabel.htmlFor = `toggle-read-${book.id}`
+    toggleReadLabel.innerHTML = "I have read this"
+    book.readFinished ? toggleReadBtn.checked = true : toggleReadBtn.checked = false;
+    toggleBtnContainer.append(toggleReadBtn,toggleReadLabel)
+    
     let bookDiv = document.createElement("div");
     bookDiv.classList.add("book")
     bookDiv.id = book.id; //add bookId to element
-    bookDiv.append(bookName, bookAuthor, bookPages, bookRead, removeBtn)
+    bookDiv.append(bookName, bookAuthor, bookPages, removeBtn, toggleBtnContainer)
     bookDisplay.append(bookDiv)
 }
 myLibrary.forEach((book) => void displayBook(book))
