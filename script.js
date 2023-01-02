@@ -23,12 +23,17 @@ function Book(name, author, pages, readFinished, id) {
     this.id = id;
 }
 
+
+//PROGRESS IS TILL HERE
+Book.prototype.toggleRead = function () {
+
+}
+
 let bookId = 0;
 function addBookToLibrary(name, author, pages, readFinished) {
     const newBook = new Book(name, author, pages, readFinished, bookId);
     myLibrary.push(newBook);
     bookId++;
-    console.log(newBook)
 }
 
 addBookToLibrary('Garden of Oz', 'Zach', 100, false);
@@ -36,6 +41,8 @@ addBookToLibrary('Robot Rocks', 'Luuk', 235, true);
 addBookToLibrary('AI is cool', 'Lea', 400, true);
 addBookToLibrary('Luzern is good', 'Greta', 664, false);
 addBookToLibrary('Dreams', 'Daylan', 245, true);
+
+myLibrary[0].toggleRead();
 
 function addRemoveFunction(btn) {
     btn.addEventListener("click", (e) => {
@@ -45,14 +52,28 @@ function addRemoveFunction(btn) {
     })
 }
 
-
 function deleteBookFromLibrary(library, id) {
     return library.filter(book => book.id !== parseInt(id));
 }
 
+function addBackgroundColorChange(checkboxBtn) {
+    checkboxBtn.addEventListener('change', (e) => {
+        let bookCard = e.target.parentElement.parentElement.parentElement
+        if (e.target.checked) {
+            bookCard.classList.add("read")
+            bookCard.classList.remove("not-read")
+        } else {
+            bookCard.classList.add("not-read")
+            bookCard.classList.remove("read")
+        }
+    })
+}
 
 let bookDisplay = document.querySelector(".books")
 function displayBook(book) {
+    //main book div
+    let bookDiv = document.createElement("div");
+
     let bookName = document.createElement("p");
     bookName.innerText = `"${book.name}"`;
     let bookAuthor = document.createElement("p");
@@ -68,9 +89,20 @@ function displayBook(book) {
     toggleBtnContainer.classList.add("toggle-btn-container")
     //checkbox
     let toggleReadBtn = document.createElement("input")
+    toggleReadBtn.classList.add("toggle-read-btn")
     toggleReadBtn.type = "checkbox"
     toggleReadBtn.id = `toggle-read-${book.id}`
-    book.readFinished ? toggleReadBtn.checked = true : toggleReadBtn.checked = false;
+    addBackgroundColorChange(toggleReadBtn);
+    book.readFinished
+        ? (function () {
+            toggleReadBtn.checked = true
+            bookDiv.classList.add("read")
+        })()
+        : (function () {
+            toggleReadBtn.checked = false;
+            bookDiv.classList.add("not-read")
+        })()
+
     //label
     let toggleReadLabel = document.createElement("label")
     let labelSpan = document.createElement('span')
@@ -81,12 +113,13 @@ function displayBook(book) {
     toggleBtnContainer.append(toggleReadLabel)
     // toggleBtnContainer.append(toggleReadBtn,toggleReadLabel)
 
-    let bookDiv = document.createElement("div");
+
     bookDiv.classList.add("book")
     bookDiv.id = book.id; //add bookId to element
     bookDiv.append(bookName, bookAuthor, bookPages, removeBtn, toggleBtnContainer)
     bookDisplay.append(bookDiv)
 }
+
 myLibrary.forEach((book) => void displayBook(book))
 
 
@@ -110,6 +143,8 @@ addBookBtn.addEventListener("click", () => {
         modal.style.display = "none";
     }
 })
+
+
 
 
 

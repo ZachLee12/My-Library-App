@@ -3,6 +3,12 @@
     --form-font-size: 1.8em;
 }
 
+@font-face {
+    font-family: 'Merriweather';
+    src: url("./fonts/Merriweather/Merriweather-Regular.ttf");
+}
+
+
 body {
     background-color: #ededed;
 }
@@ -16,6 +22,11 @@ body {
     align-items: center;
     padding-left: 20px;
     padding-right: 20px;
+}
+
+.header p {
+    font-size: 40px;
+    font-family: 'Merriweather', serif;
 }
 
 .header div {
@@ -46,7 +57,8 @@ button.btn-new-book {
 }
 
 button.btn-new-book:hover {
-    background-color: #429149;
+    background-color: #5af167;
+    scale: 1.1;
 }
 
 button.btn-new-book:active {
@@ -55,10 +67,6 @@ button.btn-new-book:active {
 
 button.btn-new-book img {
     height: 40%;
-}
-
-.header p {
-    font-size: 40px;
 }
 
 .books {
@@ -74,15 +82,23 @@ button.btn-new-book img {
 }
 
 .books .book {
-    border: 2px solid green;
     position: relative;
     height: 240px;
-    background-image: linear-gradient(-45deg, #5ec046, #f6f9ff);
     border-radius: 25px;
     display: grid;
     justify-content: center;
     align-items: center;
     /*this helps centering the texts*/
+}
+
+.book.read {
+    border: 2px solid green;
+    background: linear-gradient(-45deg, #5ec046, #f6f9ff);
+}
+
+.book.not-read {
+    border: 2px solid rgb(239, 82, 10);
+    background: linear-gradient(-45deg, #d74c11, #f6f9ff);
 }
 
 .book p {
@@ -115,6 +131,7 @@ button.btn-new-book img {
     font-size: large;
     background-image: url("./images/cross.svg");
     background-size: cover;
+    transition: all 400ms;
 }
 
 .book .remove-btn:hover {
