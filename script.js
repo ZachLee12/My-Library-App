@@ -24,9 +24,9 @@ function Book(name, author, pages, readFinished, id) {
 }
 
 
-//PROGRESS IS TILL HERE
+//Prototype 
 Book.prototype.toggleRead = function () {
-
+    this.readFinished = !this.readFinished
 }
 
 let bookId = 0;
@@ -42,8 +42,6 @@ addBookToLibrary('AI is cool', 'Lea', 400, true);
 addBookToLibrary('Luzern is good', 'Greta', 664, false);
 addBookToLibrary('Dreams', 'Daylan', 245, true);
 
-myLibrary[0].toggleRead();
-
 function addRemoveFunction(btn) {
     btn.addEventListener("click", (e) => {
         e.target.parentElement.remove(); //remove from HTML
@@ -56,7 +54,7 @@ function deleteBookFromLibrary(library, id) {
     return library.filter(book => book.id !== parseInt(id));
 }
 
-function addBackgroundColorChange(checkboxBtn) {
+function addToggleRead(checkboxBtn) {
     checkboxBtn.addEventListener('change', (e) => {
         let bookCard = e.target.parentElement.parentElement.parentElement
         if (e.target.checked) {
@@ -66,6 +64,9 @@ function addBackgroundColorChange(checkboxBtn) {
             bookCard.classList.add("not-read")
             bookCard.classList.remove("read")
         }
+        //associate bookCard.id(html) with book.id(js)
+        let toggleBook = myLibrary.find(book => parseInt(bookCard.id) === book.id)
+        toggleBook.toggleRead();
     })
 }
 
@@ -92,7 +93,7 @@ function displayBook(book) {
     toggleReadBtn.classList.add("toggle-read-btn")
     toggleReadBtn.type = "checkbox"
     toggleReadBtn.id = `toggle-read-${book.id}`
-    addBackgroundColorChange(toggleReadBtn);
+    addToggleRead(toggleReadBtn);
     book.readFinished
         ? (function () {
             toggleReadBtn.checked = true
