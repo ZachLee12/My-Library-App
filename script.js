@@ -15,18 +15,19 @@ span.onclick = function () {
 //Library 
 let myLibrary = []
 
-function Book(name, author, pages, readFinished, id) {
-    this.name = name;
-    this.author = author;
-    this.pages = pages;
-    this.readFinished = readFinished;
-    this.id = id;
-}
+class Book {
+    constructor(name, author, pages, readFinished, id) {
+        this.name = name;
+        this.author = author;
+        this.pages = pages;
+        this.readFinished = readFinished;
+        this.id = id;
+    }
 
+    toggleRead() {
+        this.readFinished = !this.readFinished
+    }
 
-//Prototype 
-Book.prototype.toggleRead = function () {
-    this.readFinished = !this.readFinished
 }
 
 let bookId = 0;
